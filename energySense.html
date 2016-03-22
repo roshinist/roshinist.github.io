@@ -20,6 +20,7 @@
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="css/animate.min.css" type="text/css">
 
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -28,6 +29,11 @@
     <![endif]-->
 
 </head>
+
+<script src="js/wow.min.js"></script>
+              <script>
+              new WOW().init();
+              </script>
 
 <body>
 
@@ -49,7 +55,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="index.html##about">About</a>
+                        <a class="page-scroll" href="index.html#about">About</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="index.html#services">Interests</a>
@@ -94,7 +100,7 @@
                 </p>
             </div>
             <div class="col-sm-4">
-                <img src="img/portfolio/bedAndLamp.png" class="img-responsive  animated bounceInRight" alt="">
+                <img src="img/portfolio/bedAndLamp.png" width="200" height="200" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="">
             </div>
         </div>
 
@@ -107,19 +113,19 @@
             
         <div class="row">
             <div class="col-sm-4">
-                <img class="img-responsive img-center animated bounceIn" src="img/portfolio/ComboChart-100.png" alt="">
+                <img class="img-responsive img-center wow bounceIn"  data-wow-delay=".2s" src="img/portfolio/ComboChart-100.png" alt="">
                 <h3 >Data Collection</h3>
-                <p>Gathered Data from iPhone Sensors including Accelerometer and Microphone</p>
+                <p style="font-size:15px; text-align:center;">Gathered Data from iPhone Sensors including Accelerometer and Microphone</p>
             </div>
             <div class="col-sm-4">
-                <img class="img-responsive img-center animated bounceIn" src="img/portfolio/GoogleCode-100.png" alt="">
+                <img class="img-responsive img-center wow bounceIn" data-wow-delay=".2s" src="img/portfolio/GoogleCode-100.png" alt="">
                 <h3>Design and Development of Sleep Sensing Algorithm</h3>
-                <p>Processed collected data to design and implement the sleep sensing algorithm using data structures like Queues in SWIFT.</p>
+                <p style="font-size:15px; text-align:center;">Processed collected data to design and implement the sleep sensing algorithm using data structures like Queues in SWIFT.</p>
             </div>
             <div class="col-sm-4">
-                <img class="img-responsive img-center animated bounceIn" src="img/portfolio/Group.png" alt="">
+                <img class="img-responsive img-center wow bounceIn" data-wow-delay=".2s" src="img/portfolio/Group.png" alt="">
                 <h3>User Interviews</h3>
-                <p>Conducted user interviews to conclude room-mate conflicts for the lack of energy conservation in shared spaces.</p>
+                <p style="font-size:15px; text-align:center;">Conducted user interviews to conclude room-mate conflicts for the lack of energy conservation in shared spaces.</p>
             </div>
         </div>
         <!-- /.row -->
