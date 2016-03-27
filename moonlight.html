@@ -20,6 +20,8 @@
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="css/animate.min.css" type="text/css">
 
+    <link href="css/styles.css" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -86,14 +88,25 @@
         </div>
     </header>
 
-    <!-- Page Content -->
-    <div class="container">
-
+<!--main-->
+<div class="container">
+    <div class="row">
+      <!--left-->
+      <div class="col-md-3" id="leftCol">
+        <ul class="nav nav-stacked" id="sidebar">
+          <li><a href="#sec0">Concept</a></li>
+          <li><a href="#sec1">Role in Project</a></li>
+          <li><a href="#sec2">Process</a></li>
+          <li><a href="#sec3">Other Projects</a></li>
+        </ul>
+      </div><!--/left-->
+      
+      <!--right-->
+      <div class="col-md-9">
         <hr>
-
         <div class="row">
-            <div class="col-sm-7 ">
-                <h2>Concept</h2>
+            <div class="col-sm-6 ">
+                <h2 id = "sec0">Concept</h2>
                 <p>Moonlight is as self-powered bike wheel that comes along with an <b>Android mobile application</b>. The mechanical components and the software elements together ensure <b>public safety</b> for the biking community and helps <b>recover theft</b>. The Android app allows users to:</p>
 
                 <h2 style= "text-align: left">Have a look at our Poster!</h2>
@@ -102,7 +115,7 @@
                 </p>
             </div>
             
-            <div class="row col-sm-5 ">
+            <div class="row col-sm-6 ">
                 <div class="col-sm-4">
                     <img class="img-responsive img-center wow fadeIn" data-wow-delay=".1s" src="img/portfolio/Bluetooth.png" alt="">
                     <h3 >Control Lights</h3>
@@ -123,13 +136,9 @@
 
         </div>
 
-
-        <!-- /.row -->
-
         <hr>
-                
-                <h2>Role in Project</h2>
-            
+    
+        <h2 id="sec1">Role in Project</h2>
         <div class="row">
             <div class="col-sm-4">
                 <img class="img-responsive img-center wow bounceIn"  data-wow-delay=".2s" src="img/portfolio/Design-50.png" alt="">
@@ -145,16 +154,217 @@
             </div>
             <div class="col-sm-4">
                 <img class="img-responsive img-center wow bounceIn"  data-wow-delay=".2s" src="img/portfolio/Database-50.png" alt="">
-                <h3>Retrieved and Stored Information</h3>
-                <p style="font-size:15px; text-align:center;">Stored user's claim of 'stolen bike' and retrieved contact information from Parse Database.</p>
+                <h3>Retrieved & Stored Information</h3>
+                <p style="font-size:15px; text-align:center;">Stored user's claim of 'stolen bike' & retrieved information from Parse.</p>
                 <img class="img-responsive img-center wow fadeIn" width="200" height="200" data-wow-delay=".1s" src="img/portfolio/ReportStolenBike.png" alt="">
             </div>
         </div>
         <!-- /.row -->
-
+        
         <hr>
+        
+        <h2 id="sec2">Process</h2>
 
-        <!-- Footer -->
+        <div class="container">
+    <ul class="timeline col-sm-8">
+        <li>
+
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+                <h5>What are the clients expectations?</h5>
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">
+                    After a series of meetings with the clients and the team, my teammates and I were able to understand the expectations of the clients, i.e to develop a <b>companion app</b> to promote a bicycle community, with the 3 main features. 
+              </p>
+              
+            </div>
+            
+            <div class="timeline-footer">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-lg-6">
+             <img src="img/Moonlight/features.jpg" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="" style="PADDING-LEFT: 51px; PADDING-RIGHT: 5px; PADDING-TOP: 5px; PADDING-BOTTOM: 5px">
+        </div>
+        
+        </li>
+        
+        <li  class="timeline-inverted">
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h5>UI Wireframing and Low Fidelity Prototype</h5>
+              
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">After <b>P</b>reliminary <b>D</b>esign <b>R</b>eview presentation, I led the paper prototyping session and took the initiative to complete the low fidelity prototype using <a href="https://www.fluidui.com/editor/live/preview/p_3hl2uCDWWZfDOJrSyL5yrS76eIiITbrs.1458486985340">FluidUI</a> (with limited interactions). The latter was presented during the <b>C</b>ritical <b>D</b>esign <b>R</b>eview to clients, teaching faculty and peers.</p>
+             
+            </div>
+            
+            <div class="timeline-footer">
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-lg-6">
+             <img src="img/Moonlight/settings.jpg" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="" style="PADDING-LEFT: 5px; PADDING-RIGHT: 20px; PADDING-TOP: 5px; PADDING-BOTTOM: 5px">
+        </div>
+        
+
+        </li>
+        <li>
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h5>Testing Low Fidelity Prototype</h5>
+              
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">Upon <b>testing the prototype</b> on a few volunteers and receiving critiques, comments and suggestions from CDR, the <b>UI was redesigned</b> after discussing the test results with the team and clients. The UI at this point was changed from a light to dark theme to best match the idealogy of the project. 
+            </p>
+              
+            </div>
+            
+            <div class="timeline-footer">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-lg-6">
+             <img src="img/Moonlight/changeUI.jpg" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="" style="PADDING-LEFT: 51px; PADDING-RIGHT: 5px; PADDING-TOP: 5px; PADDING-BOTTOM: 5px">
+        </div>
+        </li>
+        
+        <li  class="timeline-inverted">
+ 
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h5>Viewing and Reporting stolen bikes</h5>
+              
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">Using the <b>Google Maps API</b> and <b>Geolocation API</b>, the Maps feature was implemented. Testing it on an Android phone confirmed that location permission had to be set to <b>ACCESS_FINE_LOCATION</b> value in addition to <b>ACCESS_COARSE_LOCATION</b> to ensure precise and accurate coordinates  were retrieved. User contact information was retrieved from PARSE database to let users choose which piece of contact information they would like to display in the 'list of lost bikes'. In order to inform users completed actions or tuen on location services, alert dialogues and/or Toasts were included. </p>
+              
+            </div>
+            
+            <div class="timeline-footer">
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-lg-6">
+             <img src="img/Moonlight/GoogleMaps.jpg" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="" style="PADDING-LEFT: 51px; PADDING-RIGHT: 5px; PADDING-TOP: 5px; PADDING-BOTTOM: 5px">
+        </div>
+         <div class="col-xs-12 col-sm-6 col-lg-6">
+             <img src="img/Moonlight/parse.jpg" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="" style="PADDING-LEFT: 51px; PADDING-RIGHT: 5px; PADDING-TOP: 5px; PADDING-BOTTOM: 5px">
+        </div>
+        </li>
+        <li>
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h5>Improved Menu UI and Checked for Consistency</h5>
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">The menu UI was improved to include graphical icons that visually convey it's functions. Once all the other features were programmed, I checked for consistency across most frames.  </p>
+            </div>
+            
+            <div class="timeline-footer">
+            </div>
+          </div>
+        </li>
+        
+    </ul>
+</div>
+        
+        <hr>
+        
+        <h2 id="sec3">Other Projects</h2>
+       <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="energySense.html" class="portfolio-box">
+                        <img  src="img/portfolio/Logo.png" class="img-responsive wow fadeIn" data-wow-delay=".1s"alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    iOS Development
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    Energy Sense
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="ffsiYoutube.html" class="portfolio-box">
+                        <img height="100" src="img/portfolio/YouTube-logo-full_color.png" class="img-responsive wow fadeIn" data-wow-delay=".1s" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    UX Research
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    Analysis of Youtube
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="moonlight.html" class="portfolio-box">
+                        <img height="100" src="img/portfolio/moonlightProj.png" class="img-responsive wow fadeIn" data-wow-delay=".1s" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    Android Development
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    Moonlight
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="autino.html" class="portfolio-box">
+                        <img height="100"src="img/portfolio/AutinoLogo.png" class="img-responsive wow fadeIn displayed" data-wow-delay=".1s" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    UI/UX Design and Research
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    Autino
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="sats.html" class="portfolio-box">
+                        <img height="100"src="img/portfolio/SATSimage.png" class="img-responsive wow fadeIn" data-wow-delay=".1s" alt="" >
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    Web Development
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    SATS
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        
+
+        </div><!--/right-->
+    </div><!--/row-->
+    <!-- Footer -->
         <footer>
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -163,16 +373,13 @@
             </div>
             <!-- /.row -->
         </footer>
+</div><!--/container-->
 
-    </div>
-    <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-</body>
-
+    <!-- script references -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/scripts.js"></script>
+    </body>
 </html>

@@ -50,7 +50,11 @@ h4{
     color: #ccc;
     font-style: italic;
 }
-
+h5{
+    font-size: 20px;
+    text-align: center;
+    font-size: 15px;
+}
 hr {
     border-color: #f05f40;
     border-width: 3px;

@@ -20,7 +20,7 @@
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="css/animate.min.css" type="text/css">
 
-
+    <link href="css/styles.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -85,36 +85,42 @@
         </div>
     </header>
 
-    <!-- Page Content -->
-    <div class="container">
-
+ <!--main-->
+<div class="container">
+    <div class="row">
+      <!--left-->
+      <div class="col-md-3" id="leftCol">
+        <ul class="nav nav-stacked" id="sidebar">
+          <li><a href="#sec0">Concept</a></li>
+          <li><a href="#sec1">Role in Project</a></li>
+          <li><a href="#sec2">Process</a></li>
+          <li><a href="#sec3">Other Projects</a></li>
+        </ul>
+      </div><!--/left-->
+      
+      <!--right-->
+      <div class="col-md-9">
         <hr>
-
         <div class="row">
             <div class="col-sm-8">
-                <h2>Concept</h2>
-                <p>Autism is characterized by impairments in communication, behavior and social interaction. Currently, there is no known cure for autism. However, as quoted by the National Autism Association, “with early intervention and treatment, the diverse symptoms related to autism can be greatly improved and in some cases completely overcome.“</p>
-                <p>As part of our course work at Cornell University, our team of 5 students took on the grand challenge of addressing issues faced by individuals with autism, in particular for children in their early years of development.</p>
-                <p>We developed the <b>design</b> concept of the Autino ecosystem, <b>an ambient installation</b> at schools for autistic children and created a prototype for reporting data that would enable caregivers, parents and clinicians to plan and execute effective and evidence-based interventions.</p>
+                    <h2 id = "sec0">Concept</h2>
+                    <p>Autism is characterized by impairments in communication, behavior and social interaction. Currently, there is no known cure for autism. However, as quoted by the National Autism Association, “with early intervention and treatment, the diverse symptoms related to autism can be greatly improved and in some cases completely overcome.“</p>
+                    <p>As part of our course work at Cornell University, our team of 5 students took on the grand challenge of addressing issues faced by individuals with autism, in particular for children in their early years of development.</p>
+                    <p>We developed the <b>design</b> concept of the Autino ecosystem, <b>an ambient installation</b> at schools for autistic children and created a prototype for reporting data that would enable caregivers, parents and clinicians to plan and execute effective and evidence-based interventions.</p>
 
-                <h2>Interested to know more?</h2>
-                <p>
-                    <a class="btn btn-default btn-lg" href="https://drive.google.com/a/cornell.edu/file/d/0B59_p3Ojb1utakxlbmlwWnE3dnc/view">Read Paper</a>
-                </p>
+                    <h2>Interested to know more?</h2>
+                    <p>
+                        <a class="btn btn-default btn-lg" href="https://drive.google.com/a/cornell.edu/file/d/0B59_p3Ojb1utakxlbmlwWnE3dnc/view">Read Paper</a>
+                    </p>
+                </div>
+                <div class="col-sm-4">
+
+                        <iframe id="bg" height = "250" width = "250" src="https://www.youtube.com/embed/zXKN6rI7IVc" frameborder="0" allowfullscreen ></iframe>
+                </div>
             </div>
-            <div class="col-sm-4">
-
-                    <iframe id="bg" height = "350" width = "350" src="https://www.youtube.com/embed/zXKN6rI7IVc" frameborder="0" allowfullscreen ></iframe>
-            </div>
-        </div>
-
-
-        <!-- /.row -->
-
         <hr>
-                
-                <h2>Role in Project</h2>
-            
+    
+        <h2 id="sec1">Role in Project</h2>
         <div class="row">
             <div class="col-sm-6">
                 <img class="img-responsive img-center wow bounceIn"  data-wow-delay=".2s" src="img/portfolio/Reading-104.png" alt="">
@@ -128,7 +134,7 @@
                 <p style="font-size:15px; text-align:center;">Designed the UI and interaction flow of data reporting interface for parents to make evidence based interventions.</p>
                 
             </div>
-            <div >
+<!--             <div >
                 <div class="col-sm-4">
                      <img class="img-responsive img-center wow fadeIn" data-wow-delay=".1s"  width="400" height="300" data-wow-delay=".2s" src="img/portfolio/PostIts.jpg" alt="">
                 </div>
@@ -138,15 +144,228 @@
                 <div class="col-sm-4">
                     <img class="img-responsive img-center wow fadeIn" data-wow-delay=".1s" width="280" height="300" data-wow-delay=".2s" src="img/portfolio/LowFidelityPrototype.png" alt="">
                 </div>
+            </div> -->
+        </div>
+        
+        <hr>
+        
+        <h2 id="sec2">Process</h2>
+
+        <div class="container">
+    <ul class="timeline col-sm-8">
+        <li>
+
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+                <h5>Research Existing Solutions</h5>
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">Research existing solutions under three major categories – Smartwear, Applications, Wearables</p>
+              
             </div>
             
-             
+            <div class="timeline-footer">
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-lg-6">
+             <img src="img/autino/Existing-Tech.jpg" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="" style="PADDING-LEFT: 51px; PADDING-RIGHT: 5px; PADDING-TOP: 5px; PADDING-BOTTOM: 5px">
         </div>
-        <!-- /.row -->
+        
+        </li>
+        
+        <li  class="timeline-inverted">
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h5>Identify Shortcomings</h5>
+              
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">Lack of evidence-based interventions <br>
+                    Challenges in data collection<br>
+                    Lack of continuous interventions<br>
+                    Lack of unobtrusive sensory interventions</p>
+            </div>
+            
+            <div class="timeline-footer">
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h5>Analyze Problem Space</h5>
+              
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">Process information gathered from relevant research, academic papers and commercial products.
+            </p>
+              
+            </div>
+            
+            <div class="timeline-footer">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-lg-6">
+             <img src="img/autino/Brainstorm.jpg" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="" style="PADDING-LEFT: 51px; PADDING-RIGHT: 5px; PADDING-TOP: 5px; PADDING-BOTTOM: 5px">
+        </div>
+        </li>
+        
+        <li  class="timeline-inverted">
+ 
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h5>Designed and Brainstormed Interventions</h5>
+              
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">Gather information for three main stakeholders- caregivers, parents and clinicians, on the type of assessment (Response to name, Vocabulary, Visual performance, Imitation, Reception &amp; Expression),&nbsp;measure of response to each of these assessments and the level of response detail appreciated by&nbsp;each stakeholder. <a href="https://coggle.it/diagram/Vl3PD5zwfOgyE4Ck" target="_blank">Click here to view our cogs at work</a></p>
+              
+            </div>
+            
+            <div class="timeline-footer">
+            </div>
+          </div>
 
+        </li>
+        <li>
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h5>Wireframing and Paper Prototype</h5>
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">A sample of the paper prototype I designed for one of the stakeholders- parents.</p>
+            </div>
+            
+            <div class="timeline-footer">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-lg-6">
+             <img src="img/autino/Wireframe.jpg" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="" style="PADDING-LEFT: 51px; PADDING-RIGHT: 5px; PADDING-TOP: 5px; PADDING-BOTTOM: 5px">
+        </div>
+        </li>
+
+         <li  class="timeline-inverted">
+ 
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h5>High Fidelity Prototype</h5>
+              
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">Designed the high fidelity prototype on UXpin.</p>
+              
+            </div>
+            
+            <div class="timeline-footer">
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-lg-6">
+             <img src="img/autino/Parents01.png" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="" style="PADDING-LEFT: 51px; PADDING-RIGHT: 30px; PADDING-TOP: 5px; PADDING-BOTTOM: 5px">
+        </div>
+
+        </li>
+        
+    </ul>
+</div>
+        
         <hr>
+        
+        <h2 id="sec3">Other Projects</h2>
+       <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="energySense.html" class="portfolio-box">
+                        <img  src="img/portfolio/Logo.png" class="img-responsive wow fadeIn" data-wow-delay=".1s"alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    iOS Development
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    Energy Sense
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="ffsiYoutube.html" class="portfolio-box">
+                        <img height="100" src="img/portfolio/YouTube-logo-full_color.png" class="img-responsive wow fadeIn" data-wow-delay=".1s" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    UX Research
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    Analysis of Youtube
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="moonlight.html" class="portfolio-box">
+                        <img height="100" src="img/portfolio/moonlightProj.png" class="img-responsive wow fadeIn" data-wow-delay=".1s" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    Android Development
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    Moonlight
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="autino.html" class="portfolio-box">
+                        <img height="100"src="img/portfolio/AutinoLogo.png" class="img-responsive wow fadeIn displayed" data-wow-delay=".1s" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    UI/UX Design and Research
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    Autino
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="sats.html" class="portfolio-box">
+                        <img height="100"src="img/portfolio/SATSimage.png" class="img-responsive wow fadeIn" data-wow-delay=".1s" alt="" >
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    Web Development
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    SATS
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Footer -->
+        
+
+        </div><!--/right-->
+    </div><!--/row-->
+    <!-- Footer -->
         <footer>
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -155,16 +374,13 @@
             </div>
             <!-- /.row -->
         </footer>
+</div><!--/container-->
 
-    </div>
-    <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-</body>
-
+    <!-- script references -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/scripts.js"></script>
+    </body>
 </html>

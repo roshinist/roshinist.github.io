@@ -20,7 +20,7 @@
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="css/animate.min.css" type="text/css">
 
-
+     <link href="css/styles.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -85,48 +85,203 @@
         </div>
     </header>
 
-    <!-- Page Content -->
-    <div class="container">
-
+<!--main-->
+<div class="container">
+    <div class="row">
+      <!--left-->
+      <div class="col-md-3" id="leftCol">
+        <ul class="nav nav-stacked" id="sidebar">
+          <li><a href="#sec0">Concept</a></li>
+          <li><a href="#sec1">Role in Project</a></li>
+          <li><a href="#sec2">Process</a></li>
+          <li><a href="#sec3">Other Projects</a></li>
+        </ul>
+      </div><!--/left-->
+      
+      <!--right-->
+      <div class="col-md-9 col-lg-9">
         <hr>
-
-        <div class="row">
-            <div class="col-sm-4">
-                <h2>Concept</h2>
-                <p>SATS is an automated assessment system used in the context of computer programming excercises. As an undergraduate student reserach assitant I <b>wireframed</b> the user interfaces, primarily for students, and programmed the JavaScript framework. Object Oriented programming concepts were used and <b>coded in Javascript</b> to allow for the website to load faster.</p>
-            </div>
-            <div class="col-sm-8">
-                     <img src="img/portfolio/screenshot.png" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="">
-            </div>
-        </div>
-
-
-        <!-- /.row -->
-
+        <h2 id="sec0">Concept</h2>
+        <p>SATS is an automated assessment system used in the context of computer programming excercises. As an undergraduate student reserach assitant I <b>wireframed</b> the user interfaces, primarily for students, and programmed the JavaScript framework. Object Oriented programming concepts were used and <b>coded in Javascript</b> to allow for the website to load faster.</p>
         <hr>
-                
-                <h2>Role in Project</h2>
-            
+    
+        <h2 id="sec1">Role in Project</h2>
         <div class="row">
             <div class="col-sm-6">
                 <img class="img-responsive img-center wow bounceIn"  data-wow-delay=".2s" src="img/portfolio/Design-50.png" alt="">
                 <h3 >Wireframing UI</h3>
                 <p style="font-size:15px; text-align:center;">Wireframed simple user interfaces.</p>
-                <img class="img-responsive img-center wow fadeIn"  data-wow-delay=".2s" src="img/portfolio/SignIn.png" alt="">
+<!--                 <img class="img-responsive img-center wow fadeIn"  data-wow-delay=".2s" src="img/portfolio/SignIn.png" alt=""> -->
                
             </div>
             <div class="col-sm-6">
                 <img class="img-responsive img-center wow bounceIn" data-wow-delay=".2s" src="img/portfolio/GoogleCode-100.png" alt="">
                 <h3>Programmed in JavaScript</h3>
                 <p style="font-size:15px; text-align:center;">Used <b>Bootstrap</b> starter templates and components to prototype the website.</p>
-                <img class="img-responsive img-center wow fadeIn" data-wow-delay=".2s" src="img/portfolio/StudentView.png" alt="">
+                <!-- <img class="img-responsive img-center wow fadeIn" data-wow-delay=".2s" src="img/portfolio/StudentView.png" alt=""> -->
             </div>
         </div>
         <!-- /.row -->
-
         <hr>
+        
+        <h2 id="sec2">Process</h2>
 
-        <!-- Footer -->
+        <div class="container">
+    <ul class="timeline col-sm-8">
+        <li>
+
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+                <h5>Wireframed Sign-in page</h5>
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">Layed out the elements of a sign-in page as a paper prototype</p>
+              
+            </div>
+            
+            <div class="timeline-footer">
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 col-lg-6">
+             <img src="img/sats/SignIn.png" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="" style="PADDING-LEFT: 61px; PADDING-RIGHT: 5px; PADDING-TOP: 5px; PADDING-BOTTOM: 5px">
+        </div>
+        
+        </li>
+        
+        <li  class="timeline-inverted">
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record invert" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h5>Wireframed Student page</h5>
+              
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">Layed out the elements of the Student page on a paper prototype. Confirmed the wireframes with client and made changes where necessary.</p>
+             
+            </div>
+            
+            <div class="timeline-footer">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-lg-6">
+             <img src="img/sats/StudentView.png" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="" style="PADDING-LEFT: 51px; PADDING-RIGHT: 30px; PADDING-TOP: 5px; PADDING-BOTTOM: 5px">
+        </div>
+        </li>
+        <li>
+          <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" title="11 hours ago via Twitter" id=""></i></a></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h5>High Fidelity Prototype</h5>
+              
+            </div>
+            <div class="timeline-body">
+              <p style = "font-size: 12px;">Implemented the high fidelity prototype using object oriented Javascript and Bootstrap components.
+            </p>
+              
+            </div>
+            
+            <div class="timeline-footer">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-lg-6">
+             <img src="img/sats/screenshot.png" class="img-responsive wow bounceInRight " data-wow-delay=".2s" alt="" style="PADDING-LEFT: 51px; PADDING-RIGHT: 30px; PADDING-TOP: 5px; PADDING-BOTTOM: 5px">
+        </div>
+        </li>
+    </ul>
+</div>
+        
+        <hr>
+        
+        <h2 id="sec3">Other Projects</h2>
+       <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="energySense.html" class="portfolio-box">
+                        <img  src="img/portfolio/Logo.png" class="img-responsive wow fadeIn" data-wow-delay=".1s"alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    iOS Development
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    Energy Sense
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="ffsiYoutube.html" class="portfolio-box">
+                        <img height="100" src="img/portfolio/YouTube-logo-full_color.png" class="img-responsive wow fadeIn" data-wow-delay=".1s" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    UX Research
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    Analysis of Youtube
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="moonlight.html" class="portfolio-box">
+                        <img height="100" src="img/portfolio/moonlightProj.png" class="img-responsive wow fadeIn" data-wow-delay=".1s" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    Android Development
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    Moonlight
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="autino.html" class="portfolio-box">
+                        <img height="100"src="img/portfolio/AutinoLogo.png" class="img-responsive wow fadeIn displayed" data-wow-delay=".1s" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    UI/UX Design and Research
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    Autino
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <a href="sats.html" class="portfolio-box">
+                        <img height="100"src="img/portfolio/SATSimage.png" class="img-responsive wow fadeIn" data-wow-delay=".1s" alt="" >
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded" style = "font-size: 15px;">
+                                    Web Development
+                                </div>
+                                <div class="project-name" style = "font-size: 15px;">
+                                    SATS
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        
+
+        </div><!--/right-->
+    </div><!--/row-->
+    <!-- Footer -->
         <footer>
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -135,16 +290,13 @@
             </div>
             <!-- /.row -->
         </footer>
+</div><!--/container-->
 
-    </div>
-    <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-</body>
-
+    <!-- script references -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/scripts.js"></script>
+    </body>
 </html>
