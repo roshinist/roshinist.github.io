@@ -1,0 +1,901 @@
+<html>
+	<head>
+		<!-- Bootstrap elements -->
+		<title>Major Choice</title>
+
+	    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+	    <link href = "css/bootstrap.min.css" rel = "stylesheet">
+
+	    <!-- Custom CSS -->
+	    <link href = "css/freelancer.css" rel = "stylesheet">
+
+	    <!-- Custom Fonts -->
+	    <link href = "font-awesome/css/font-awesome.min.css" rel = "stylesheet" type = "text/css">
+	    <link href = "http://fonts.googleapis.com/css?family=Montserrat:400,700" rel = "stylesheet" type = "text/css">
+	    <link href = "http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel = "stylesheet" type = "text/css">
+
+	  	<!--   D3 elements -->
+		<script src = "http://d3js.org/d3.v3.min.js"></script>
+		<script src = "sankey.js"></script>
+		
+		<script src = "https://rawgit.com/misoproject/d3.chart/master/d3.chart.min.js"></script>
+		<script src = "https://rawgit.com/q-m/d3.chart.sankey/master/d3.chart.sankey.min.js"></script>
+		<script src= "js/bootstrap.min.js"></script>
+		<link href = 'http://fonts.googleapis.com/css?family=Open+Sans' rel = 'stylesheet' type = 'text/css'>
+		<style>
+		body { font-family: "Futura"; background-color: #eee; }
+		/* svg { border: solid black 1px; } */
+
+		text {
+		  font-size: 12px;
+		}
+
+		.tooltip {	
+		    position: absolute;			
+		    text-align: center;			
+		    width: 300px;					
+		    height: 120px;					
+		    padding: 8px;				
+		    font: 12px Futura;		
+		    background: rgba(0, 0, 0, 0.8);	
+		    color: gold;
+		    border: 0px;		
+		    border-radius: 8px;			
+		    pointer-events: none;			
+		}
+
+		.tooltip2 {	
+		    position: absolute;			
+		    text-align: center;			
+		    width: 130px;					
+		    height: 40px;					
+		    padding: 2px;				
+		    font: 12px Futura;		
+		    background: rgba(0, 0, 0, 0.8);	
+		    color: #efedf5;
+		    border: 0px;		
+		    border-radius: 8px;			
+		    pointer-events: none;			
+		}
+
+		.button {
+		    background-color: white;
+		    color: black;
+		    border: 2px solid #555555;
+		    border-radius: 8px;
+		    font-size: 16px;
+		    font-family: Futura;
+		    padding: 15px;
+		    width: 200px; 
+		    margin: 20px 40px 20px 0;
+		    opacity: 1.0;
+		    -webkit-transition-duration: 0.4s;
+		    transition-duration: 0.4s;
+		}
+
+		.button2 {
+		    background-color: white;
+		    color: black;
+		    border: 2px solid #555555;
+		    border-radius: 8px;
+		    font-size: 16px;
+		    font-family: Futura;
+		    padding: 15px;
+		    width: 220px; 
+		    margin: 0px 40px 20px 0;
+		    opacity: 1.0;
+		    -webkit-transition-duration: 0.4s;
+		    transition-duration: 0.4s;
+		}
+
+		.span {
+			color: purple;
+			font-size: 30px;
+		}
+
+		.div {
+			text-align: center;
+		}
+
+		.div2 {
+			position: absolute;
+			text-align: center;
+			right: 400px;
+		}
+
+		#chart {
+		    height: 500px;
+		    font: 13px sans-serif;
+		}
+
+		.node rect {
+		fill-opacity: .9;
+		shape-rendering: crispEdges;
+		stroke-width: 0;
+		}
+
+		.node text {
+		text-shadow: 0 1px 0 #fff;
+		}
+
+		.link {
+		fill: none;
+		stroke: #000;
+		stroke-opacity: .3;
+		}
+
+		.link:hover {
+			stroke-opacity: .5;
+		}
+
+		path.slice {
+			stroke-width:2px;
+		}
+
+		polyline {
+			opacity: .3;
+			stroke: black;
+			stroke-width: 2px;
+			fill: none;
+		}
+
+		.navbar-fixed-top {
+			background-color: #1A242F;
+		}
+
+		.navbar-shrink {
+			background-color: #1A242F;
+		}
+		</style>
+	</head>
+	<body class = "index">
+		 <!-- Navigation -->
+	    <nav class = "navbar navbar-default navbar-fixed-top">
+	        <div class = "container">
+	            <!-- Brand and toggle get grouped for better mobile display -->
+	            <div class = "navbar-header page-scroll">
+	                <button type = "button" class = "navbar-toggle" data-toggle = "collapse" data-target = "#bs-example-navbar-collapse-1">
+	                    <span class = "sr-only">Toggle navigation</span>
+	                    <span class = "icon-bar"></span>
+	                    <span class = "icon-bar"></span>
+	                    <span class = "icon-bar"></span>
+	                </button>
+	                <a class = "navbar-brand" href = "#head">Major Choice</a>
+	            </div>
+
+	            <!-- Collect the nav links, forms, and other content for toggling -->
+	            <div class = "collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	                <ul class = "nav navbar-nav navbar-right">
+	                    <li class = "hidden">
+	                        <a href = "#head"></a>
+	                    </li>
+	                    <li class = "page-scroll">
+	                        <a href = "#categories">What are the categories?</a>
+	                    </li>
+	                    <li class = "page-scroll">
+	                        <a href = "#learnMore">Learn more</a>
+	                    </li>
+	                    <li class = "page-scroll">
+	                        <a href = "#section3">Where can you see yourself?</a>
+	                    </li>
+	                </ul>
+	            </div>
+	            <!-- /.navbar-collapse -->
+	        </div>
+	        <!-- /.container-fluid -->
+	    </nav>
+	    <header id = "head">
+	        <div class = "container">
+	            <div class = "row">
+	                <div class = "col-lg-12">
+	                	<div class = "intro-text">
+	                        <span class = "name">Know Your Options</span>
+	                        <hr class = "star-light">
+	                        <span class = "skills">There are 14 major categories and over a 100 majors to choose from, ranging between <br><b>Engineering</b> - <b>Sciences</b> - <b>Law</b>
+	                        </span>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </header>
+		<section id = "categories">
+			<div class = "container">
+				<div class = "row">		
+						<div class = "col-lg-12 text-center">
+		                    <h2>Where does your interest lie?</h2>
+		                    <hr class = "star-primary">
+		                    <p style= "font-size: 18px"> The larger the bubble, the more the number of graduates with a degree in that category.</p>
+		                </div>
+						<div id = "bubbles" class = "col-lg-12 text-center"></div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class = "container">
+				<div class = "row">
+	                <div id = "learnMore" class = "col-lg-12 text-center">
+	                    <h2>Learn More</h2>
+	                    <hr class = "star-primary">
+	                </div>
+	            </div>
+	            <div class = "row">
+	                <div class = "col-lg-12 text-center">
+	                    <p>Understand what to expect after choosing a specific category above.</p>
+	                </div>
+	            </div>
+	            <br>
+	            <div class = "row">
+	                <div id = "learnMoreButtons" class = "div">
+						<span id = "category" class = "span">All Categories</span>
+					</div>
+
+					<div id = "buttons" class = "div">
+						<button id = "salary" class = "button">Median Annual Salary</button>
+						<button id = "genderRatio" class = "button">Gender Ratio</button>
+						<button id = "employedRatio" class = "button">Employed Statistics</button>
+					</div>
+
+					<div class = "div">
+						<button id = "reset" class = "button2">Return to All Categories</button>
+					</div>
+
+					<div id = "showRatio" class = "div2" style = "left: 100px">
+						<span id = "female"></span>
+ 						<span id = "male"></span>
+					</div>
+
+					<div id = "comparision" class = "div"></div>
+
+					<div class = "div">
+						<small>Data source: <a href = "https://github.com/fivethirtyeight/data/tree/master/college-majors">https://github.com/fivethirtyeight/data/tree/master/college-majors</a>
+						</small>
+					</div>
+	            </div>
+			</div>
+	    </section>
+
+	    <section class = "success">
+			<div class = "container">
+				<div id = "section3" class = "row">
+					<div class = "col-lg-12 text-center">
+	                    <h2>Where can you see yourself?</h2>
+	                    <hr class = "star-light">
+	                    <p>Fields and occupations you can expect to work in/as with a specific degree.</p>
+	                    <p>The width of the link is directly proportional to number of graduates working in that line of field.<p> 
+	                </div>
+	            </div>
+			</div>
+	    </section>
+	    <br>
+		<div id = "sankey" class = "div"></div>
+		<div class = "div">
+			<small>Data source: <a href = "https://www.census.gov/dataviz/visualizations/stem/stem-html/">United States Census Bureau</a>
+			</small>
+		</div>
+
+		<!-- Footer -->
+	    <footer class = "text-center">
+	        <div class = "footer-below">
+	            <div class = "container">
+	                <div class = "row">
+	                    <div class = "col-lg-12">
+	                    	By Roshini S. Thiagarajan, Sanhita Mukherji and Tengli Fu
+	                    	<br>
+	                        Copyright &copy; 2016
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </footer>
+
+	    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+	    <div class = "scroll-top page-scroll visible-xs visible-sm">
+	        <a class = "btn btn-primary" href = "#page-top">
+	            <i class = "fa fa-chevron-up"></i>
+	        </a>
+	    </div>
+		<script>
+			var height = 900;
+			var width = 900;
+			var padding = 50;
+
+			var clicked = [1, 0, 0];
+
+			var choosen = 1;
+
+			var svg = d3.select("#bubbles").append("svg").attr("height", height).attr("width", width);
+			var rScale;
+				
+			var tooltip = d3.select("body")
+			.append("div")
+			.attr("class", "tooltip")
+			.style("opacity", 0.0);
+
+			var tooltip2 = d3.select("body")
+			.append("div")
+			.attr("class", "tooltip2")
+			.style("opacity", 0.0);
+
+			var tooltip3 = d3.select("body")
+			.append("div")
+			.attr("class", "tooltip3")
+			.style("opacity", 0.0);
+
+			var tooltip4 = d3.select("body")
+			.append("div")
+			.attr("class", "tooltip4")
+			.style("opacity", 0.0);
+
+			var percentFormat = d3.format(".1%");
+			var numberFormat = d3.format(".3s");
+			var format = d3.format(",.0f")
+
+			// Abstract data elements
+			var majors, categories;
+			var majorInfo, categoryInfo;
+
+			var color = ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5', '#9f9fa3', '#393b79', '#637939', '#8c6d31', '#843c39', '#7b4173', '#6b6ecf', '#ad494a', '#8ca252', '#a55194'];
+
+			d3.csv("recent-grads.csv", function (error, data) {
+				majorInfo = data;
+
+				majors = majorInfo.map(function (info) {
+					// Create shorter variable names
+					return {
+						rank: info["Rank"],
+						name: info["Major"],
+						category: info["Major_category"],
+						total: Number(info["Men"]) + Number(info["Women"]),
+						femaleRatio: Number(info["ShareWomen"]),
+						employedRatio: 1 - Number(info["Unemployment_rate"]),
+						workedPeople: Number(info["Employed"]) + Number(info["Unemployed"]),
+						earning: Number(info["Median"]),
+						lowWage: Number(info["Low_wage_jobs"]),
+						noncollege: Number(info["Non_college_jobs"])
+					};
+				})
+			});
+
+			var nodes;
+			var dataobj;
+			var circles;
+
+			d3.csv("categories.csv", function (error, data) {
+				categoryInfo = data;
+
+				categories = categoryInfo.map(function (info) {
+					// Create shorter variable names
+					return {
+						name: info["Major_category"],
+						total: Number(info["Total"]),
+						femaleRatio: Number(info["ShareWomen"]),
+						employedRatio: 1 - Number(info["Unemployment_rate"]),
+						workedPeople: Number(info["Employed"]) + Number(info["Unemployed"]),
+						earning: Number(info["Median"]),
+						short: info["Short"],
+						lowWage: Number(info["Low_wage_jobs"]),
+						noncollege: Number(info["Non_college_jobs"])
+					};
+				});
+
+				var bubble = d3.layout.pack()
+			    .sort(null)
+			    .size([height, width])
+			    .padding(0.5)
+			    .value(function(d) { return d.total; });
+
+				dataobj = { children: categories };
+				nodes = bubble.nodes(dataobj);
+				nodes = nodes.filter(function (it) { return it.parent; });
+
+				circles = d3.select("svg").selectAll("circle").data(nodes).enter()                           
+			    .append("circle")            
+			    .attr("cx", function (it) { return it.x; })
+			    .attr("cy", function (it) { return it.y; })
+			    .style("fill", function (it, i) { return color[i]; })
+			    .attr("r", function (it) { return it.r; })
+			    .on("mouseover", function (d) {
+					d3.select(this)
+					.style("fill", "gold")
+					.attr("r", function (it) { return it.r * 1.2; });
+
+					tooltip.html("<span style = 'font-size: 17px'>" + "<span style = 'color: #e34a33'>" + d.name + "</span>" + "</span>" + "<br>Total graduates: " + numberFormat(d.total) + "<br>Female Ratio: " + percentFormat(d.femaleRatio) + "<br>Employed Ratio: " + percentFormat(d.employedRatio) + "<br>Median Salary: $" + format(d.earning))
+					.style("left", (d3.event.pageX) + "px")
+			        .style("top", (d3.event.pageY) + "px")
+					.style("opacity", 1.0);
+
+					d3.select("body").style("cursor", "pointer");
+				})
+				.on("mouseout", function (d, i) {
+					d3.select(this)
+					.style("fill", function (it) { return color[i]; })
+					.attr("r", function (it) { return it.r; });
+
+					tooltip.style("opacity", 0);
+
+					d3.select("body").style("cursor", "default");
+				})
+				.on("click", function (d) {
+					d3.selectAll("button").style("background-color", "white").style("color", "black");
+					d3.selectAll("circle").style("stroke", null);
+					d3.select(this).style("stroke", "black").style("stroke-width", 2);
+					d3.select("#category").text(d.name);
+					compareSvg.selectAll("*").remove();
+					clickButton(clicked);
+
+					// When clicking the bubble, the page will scroll down to the comparasion section
+					var divPosition = $('#learnMore').offset();
+					$('html, body').animate({scrollTop: divPosition.top}, "slow");
+				});
+
+			    d3.select("svg").selectAll("text").data(nodes).enter()
+			    .append("text")
+			    .attr("x", function (it) { return it.x; })
+			    .attr("y", function (it) { return it.y; })
+			    .style("text-anchor", "middle")
+			    .style("dominant-baseline", "middle")
+			    .style("font-size", function (it, i) {
+			    	if (i == 12) return 11;
+			    })
+			    .text(function (it, i) { 
+			    	if (it.r > 55) return it.name;
+			    	else return it.short;
+			    });
+
+			    document.getElementById("salary").click();
+			});
+
+			var compareSvg = d3.select("#comparision").append("svg").attr("height", 200).attr("width", width);
+			var compare = d3.select("#category").text();
+			var data;
+
+			d3.select("#salary").on("click", function () {
+				clicked = [1, 0, 0];
+				tooltip.style("opacity", 0);
+				d3.selectAll("button").style("background-color", "white").style("color", "black");
+				d3.select("#salary").style("background-color", "black").style("color", "white");
+				compareSvg.selectAll("rect").remove();
+				compareSvg.selectAll("text").remove();
+				compareSvg.selectAll("image").remove();
+				compareSvg.selectAll("g.slice").remove();
+
+				compare = d3.select("#category").text();
+				if (compare != "All Categories") {
+					data = majors.filter(function (major) {
+						return major.category == compare;
+					});
+				}
+				else data = categories;
+
+				data = data.sort(function (a, b) { return d3.descending(a.earning, b.earning); }); // Sort data according to earning
+
+				var widthScale = d3.scale.linear().domain([0, d3.max(data, function (d) {
+					return d.earning;
+				})]).range([0, width - 12 * padding]);
+
+				var names = new Array(); // Store the name of each major or category
+				var salaries = new Array(); // Store the median salary of each major or category
+				var totalGraduates = new Array(); // Store the total number of graduates
+
+				data.forEach(function (d) {
+					names.push(d.name);
+					salaries.push(d.earning);
+					totalGraduates.push(d.total);
+				});
+
+				var chart = compareSvg.selectAll("rect").data(salaries).enter().append("rect")
+				.attr("rx", 10).attr("ry", 10)
+				.attr("height", 19).attr("x", 7.2 * padding).attr("y", function (d, i) {
+					return 35 * i + 20;
+				}).attr("width", 0)
+				.style("fill", function (d, i) {
+					return color[i];
+				})
+				.on("mouseover", function (d, i) {
+					tooltip2.html("<span style = 'font-size: 15px'>" + "<span style = 'color: #9e9ac8'>" + "Total Graduates" + "</span>" + "</span>" + "<br>" + numberFormat(totalGraduates[i]))
+					.style("left", (d3.event.pageX) + "px")
+			        .style("top", (d3.event.pageY) + "px")
+					.style("opacity", 1.0);
+				})
+				.on("mouseout", function (d) {
+					tooltip2.style("opacity", 0);
+				});
+
+				var transit = compareSvg.selectAll("rect").data(salaries)
+				.transition()
+				.duration(1000)
+				.attr("width", function (d) {
+					return widthScale(d);
+				});
+
+				compareSvg.selectAll("text.name").data(names).enter().append("text")
+				.attr("x", 7 * padding).attr("y", function (d, i) {
+					return 35 * i + 23;
+				}).text(function (d) {
+					return d;
+				}).style("text-anchor", "end").style("dominant-baseline", "hanging").style("font-size", 13);
+
+				compareSvg.selectAll("text.salary").data(salaries).enter().append("text")
+				.attr("x", 7.4 * padding).attr("y", function (d, i) {
+					return 35 * i + 23;
+				}).text(function (d) {
+					return "$" + format(d);
+				}).style("text-anchor", "start").style("dominant-baseline", "hanging").style("font-size", 13);
+
+				compareSvg.attr("height", 35 * names.length + 25);
+			});
+
+			d3.select("#genderRatio").on("click", function () {
+				clicked = [0, 1, 0];
+				d3.selectAll("button").style("background-color", "white").style("color", "black");
+				d3.select("#genderRatio").style("background-color", "black").style("color", "white");
+				tooltip.style("opacity", 0);
+				compareSvg.selectAll("rect").remove();
+				compareSvg.selectAll("text").remove();
+				compareSvg.selectAll("image").remove();
+				compareSvg.selectAll("g.slice").remove();
+				d3.select("#female").style("opacity", 0);
+				d3.select("#male").style("opacity", 0);
+
+				compare = d3.select("#category").text();
+				if (compare != "All Categories") {
+					data = majors.filter(function (major) {
+						return major.category == compare;
+					});
+				}
+				else data = categories;
+
+				data = data.sort(function (a, b) { return d3.ascending(a.femaleRatio, b.femaleRatio); }); // Sort data according to earning
+
+				var xScale = d3.scale.linear()
+			    .domain([0, d3.max(
+			    	[d3.max(data, function (major) {
+						return (1 - major.femaleRatio);
+					}), d3.max(data, function (major) {
+						return major.femaleRatio;
+					})])])
+				.range([0, width / 3 - padding / 3]);
+
+		        compareSvg.append("linearGradient")
+		      	.attr("id", "maleGradient")
+		      	.attr("gradientUnits", "userSpaceOnUse")
+		      	.attr("x1", width / 3).attr("y1", 0)
+		      	.attr("x2", width - padding).attr("y2", 0)
+		    	.selectAll("stop")
+		      	.data([
+		        	{ offset: "0%", color: "#a6bddb" },
+		        	{ offset: "50%", color: "#3690c0" },
+		        	{ offset: "100%", color: "#0570b0" }
+		     	])
+		    	.enter().append("stop")
+		      	.attr("offset", function(d) { return d.offset; })
+		      	.attr("stop-color", function(d) { return d.color; });
+
+		      	compareSvg.append("linearGradient")
+		      	.attr("id", "femaleGradient")
+		      	.attr("gradientUnits", "userSpaceOnUse")
+		      	.attr("x1", 0).attr("y1", 0)
+		      	.attr("x2", width / 3).attr("y2", 0)
+		    	.selectAll("stop")
+		      	.data([
+		        	{ offset: "0%", color: "#e7298a" },
+		        	{ offset: "50%", color: "#df65b0" },
+		        	{ offset: "100%", color: "#c994c7" }
+		     	])
+		    	.enter().append("stop")
+		      	.attr("offset", function(d) { return d.offset; })
+		      	.attr("stop-color", function(d) { return d.color; });
+
+		      	compareSvg.selectAll(".right")
+		        .data(data).enter().append("rect")
+		        .attr("class", "areaRight")
+		        .attr("x", width / 3)
+		        .attr("y", function (d, i) {
+		            return 35 * i + padding;
+		        })
+		        .attr("rx", 10)
+		        .attr("ry", 10)
+		        .attr("width", 0)
+		        .attr("height", 19)
+		        .style("fill", "url(#maleGradient)")
+		        .on("mouseover", function (d, i) {
+					document.getElementById("male").innerHTML = percentFormat(xScale.invert(d3.select(compareSvg.selectAll("rect")[0][i]).attr("width")));
+					document.getElementById("female").innerHTML = percentFormat(1 - xScale.invert(d3.select(compareSvg.selectAll("rect")[0][i]).attr("width"))) + " : ";
+					d3.select("#female").style("opacity", 1);
+					d3.select("#male").style("opacity", 1);
+
+					d3.select("body").style("cursor", "pointer");
+				})
+				.on("mouseout", function (d) {
+					tooltip.style("opacity", 0);
+					d3.select("#female").style("opacity", 0);
+					d3.select("#male").style("opacity", 0);
+
+					d3.select("body").style("cursor", "default");
+				});
+
+		        compareSvg.selectAll(".left")
+		        .data(data).enter().append("rect")
+		        .attr("class", "areaLeft")
+		        .attr("rx", 10)
+		        .attr("ry", 10)
+		        .attr("x", function (d) {
+		            return width / 3 - xScale(d.femaleRatio);
+		        })
+		        .attr("y", function (d, i){
+		            return 35 * i + padding;
+		        })
+		        .attr("width", 0)
+		        .attr("height", 19)
+		        .style("fill", "url(#femaleGradient)")
+		        .on("mouseover", function (d, i) {
+					document.getElementById("male").innerHTML = percentFormat(xScale.invert(d3.select(compareSvg.selectAll("rect")[0][i]).attr("width")));
+					document.getElementById("female").innerHTML = percentFormat(1 - xScale.invert(d3.select(compareSvg.selectAll("rect")[0][i]).attr("width"))) + " : ";
+					d3.select("#female").style("opacity", 1);
+					d3.select("#male").style("opacity", 1);
+
+					d3.select("body").style("cursor", "pointer");
+				})
+				.on("mouseout", function (d) {
+					tooltip.style("opacity", 0);
+					d3.select("#female").style("opacity", 0);
+					d3.select("#male").style("opacity", 0);
+					d3.select("body").style("cursor", "default");
+				});
+
+		        compareSvg.selectAll("text")
+		    	.data(data).enter().append("text")
+		    	.attr("x", function(d) { 
+		    		return 2 * width / 3; 
+		    	})
+		    	.attr("y", function(d, i){ 
+		    		return 35 * i + padding + 15;
+		    	})
+		    	.style("fill", "black")
+		    	.style("font-size", 13)
+		    	.text(function (d) {
+		    		return d.name;
+		    	});
+
+		    	compareSvg.append("image").attr("x", width / 6).attr("y", 0).attr("width", 30).attr("height", 30)
+		    	.attr("xlink:href", "img/female.svg");
+		    	compareSvg.append("image").attr("x", width / 2 - 50).attr("y", 0).attr("width", 30).attr("height", 30)
+		    	.attr("xlink:href", "img/male.svg");
+
+		    	var transitLeft = compareSvg.selectAll("rect").filter(function (d) {
+		    		return d3.select(this).attr("class") == "areaLeft";
+		    	})
+				.transition()
+				.duration(1000)
+				.attr("width", function (d) {
+					return xScale(d.femaleRatio);
+				});
+
+				var transitRight = compareSvg.selectAll("rect").filter(function (d) {
+					return d3.select(this).attr("class") == "areaRight";
+				})
+				.transition()
+				.duration(2000)
+				.attr("width", function (d) {
+					return xScale(1 - d.femaleRatio);
+				});
+
+		        compareSvg.attr("height", 35 * data.length + 2 * padding);
+			});
+
+			d3.select("#employedRatio").on("click", function () {
+				clicked = [0, 0, 1];
+				tooltip.html("<span style = 'font-size: 16px'>" + "<span style = 'color: #efedf5'>" + "Radius: Employment Ratio" + "<br>Angle: No. of Job Seekers" + "<br><br>Hover over Arcs to See Details" + "</span>" + "</span>")
+				.style("left", 75 + "vw")
+			    .style("top", 2600 + "px")
+				.style("opacity", 1.0);
+				d3.selectAll("button").style("background-color", "white").style("color", "black");
+				d3.select("#employedRatio").style("background-color", "black").style("color", "white");
+				compareSvg.selectAll("rect").remove();
+				compareSvg.selectAll("text").remove();
+				compareSvg.selectAll("image").remove();
+
+				compare = d3.select("#category").text();
+				if (compare != "All Categories") {
+					data = majors.filter(function (major) {
+						return major.category == compare;
+					});
+				}
+				else data = categories;
+
+				var empMax = d3.max(data, function (d) {
+					return d.employedRatio;
+				});
+
+				outerRadius = 300;
+				var vis = compareSvg.data([data]).append("svg:g")
+		        .attr("width", width) 
+		        .attr("height", height) 
+		        .attr("transform", "translate(" + width / 2 + ", " + height * 0.4 + ")");
+
+		    	var arc = d3.svg.arc()
+		    	.innerRadius(outerRadius - 180)
+		      	.outerRadius(outerRadius);
+
+		      	var pie = d3.layout.pie().sort(null).padAngle(0.0175).value(function (d) { 
+		      		return d.workedPeople; 
+		      	});
+
+		      	var arcs = vis.selectAll("g.slice").data(pie).enter()
+		      	.append("svg:g")
+		      	.attr("class", "slice")
+		      	.on("mouseover", function (d, i) {
+					d3.select(this)
+					tooltip.html("<span style = 'font-size: 15px'>" + "<span style = 'color: #e34a33'>" + data[i].name + "</span>" + "</span>" + "<br>Job Seekers: " + numberFormat(data[i].workedPeople) + "<br>Employment Ratio: " + percentFormat(data[i].employedRatio) + "<br>No. of Low Wage jobs: " + numberFormat(data[i].lowWage) + "<br>No. of Non-College Degree jobs: " + numberFormat(data[i].noncollege))
+					.style("left", 75 + "vw")
+			        .style("top", 2600 + "px")
+					.style("opacity", 1.0);
+
+					compareSvg.append("text")
+			        .attr("id", "textName")
+			        .attr("x", 450)
+			        .attr("y", 330)
+			        .text("")
+			        .style("font-size", 16)
+			        .attr("text-anchor", "middle");
+
+			        compareSvg.append("text")
+			        .attr("id", "jobSeeker")
+			        .attr("x", 450)
+			        .attr("y", 360)
+			        .text("")
+			        .style("font-size", 16)
+			        .attr("text-anchor", "middle");
+
+			        compareSvg.append("text")
+			        .attr("id", "rate")
+			        .attr("x", 450)
+			        .attr("y", 390)
+			        .text("")
+			        .style("font-size", 16)
+			        .attr("text-anchor", "middle");
+
+			        d3.select(this)
+		        	.transition()
+		        	.duration(500)
+		        	.attr("transform", function (d) {
+		            	if (!d.data._expanded) {
+		                	d.data._expanded = true;
+		                	allFalse = false;
+		                	var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
+		                	var x = Math.cos(a) * 60;
+		                	var y = Math.sin(a) * 60;
+		                	return 'translate(' + x + ', ' + y + ')';                
+		            	} else {
+			                d.data._expanded = false;
+			                allFalse = true
+			                return 'translate(0, 0)';                
+		            	}
+		        	});
+
+					document.getElementById("textName").innerHTML = data[i].name;
+					document.getElementById("jobSeeker").innerHTML = "Job Seekers: " + numberFormat(data[i].workedPeople);
+					document.getElementById("rate").innerHTML = "Employment Ratio: " + percentFormat(data[i].employedRatio);
+				})
+				.on("mouseout", function (d) {
+					tooltip.html("<span style = 'font-size: 16px'>" + "<span style = 'color: #efedf5'>" + "Radius: Employment Ratio" + "<br>Angle: No. of Job Seekers" + "<br><br>Hover over Arcs to See Details" + "</span>" + "</span>")
+					compareSvg.selectAll("text").remove(); 
+
+					d3.selectAll("g.slice")
+					.transition()
+					.duration(500)
+					.attr("transform", function (d, i) {
+						if (d.name != name) d.data._expanded = false;
+						return "translate(0, 0)";
+					});
+				});
+
+		      	arcs.append("svg:path")
+		      	.attr("fill", function (d, i) { 
+		      		return color[i]; 
+		      	})
+		      	.attr("d", function (d, i) { return arc.outerRadius(outerRadius - outerRadius)(d, i); })
+		      	.transition().duration(1500)
+		        .attr("d", function (d, i) { return arc.outerRadius(outerRadius + 100 * (1 - Math.pow(200, empMax - data[i].employedRatio)))(d, i); 
+		        });
+		        compareSvg.attr("height", 750);
+			});
+
+			d3.select("#reset").on("click", function () {
+				d3.select("#category").text("All Categories");
+				d3.select("#salary").on("click")();
+				d3.selectAll("circle").style("stroke", null);
+			});
+
+			function clickButton(clicked) {
+				if (clicked[0] == 1) {
+					d3.select("#salary").on("click")();
+				}
+				else if (clicked[1] == 1) {
+					d3.select("#genderRatio").on("click")();
+				}
+				else d3.select("#employedRatio").on("click")();
+			}
+
+			//Major Category and Jobs
+			//http://bl.ocks.org/wvengen/cab9b01816490edb7083
+		    var colors = {
+		            'biology':         '#1f77b4',
+		            'socialSci':       '#aec7e8',
+		            'education':       '#ff7f0e',
+		            'psychology':      '#ffbb78',
+		            'engineering':     '#2ca02c',
+		            'humanitiesArts':  '#98df8a',
+		            'agriculture':     '#d62728',
+		            'physical':        '#ff9896',
+		            'health':          '#9467bd',
+		            'business':        '#c5b0d5',
+		            'arts':            '#8c564b',
+		            'comm':            '#c49c94',
+		            'comp':            '#e377c2',
+		            'law':             '#f7b6d2',
+		            'end':             '#7f7f7f',
+		            'fallback':         '#9f9fa3'	//For everything besides starting nodes and links, will be set to this fallback color
+		          };
+		    var heightS = 700, widthS = 1000, paddingS = 50;
+		    d3.json("major_jobs.json", function(error, json) {
+		        jobs = json;
+
+		        //Call Sankey.path to call hovering function applied to paths.
+		        var chart = d3.select("#sankey")
+		                        .append("svg")
+		                        .attr("height", heightS)
+		                        .attr("width", widthS)
+		                        .chart("Sankey.Path");
+
+		        function label(node) {
+		          return node.name;
+		        }
+
+		        function colorSankey(node, depth) {
+		        	//remove the word following _
+		          var id = node.id.replace(/(_score)?(_\d+)?$/, '');
+		          if (colors[id]) {
+		            return colors[id];
+		          } else if (depth > 0 && node.targetLinks && node.targetLinks.length == 1) {
+		            return colors['end'];
+		          } else {
+		            return null;
+		          }
+		        }
+
+		        chart.name(label)
+		                .colorNodes( function (name, node) {
+		                    return colorSankey(node, 1) || colors.fallback;
+		                })
+		                .colorLinks( function (link) {
+		                    return colorSankey(link.source, 4) || colorSankey(link.target, 1) || colors.fallback;
+		                })
+		                .nodeWidth(15)
+		                .nodePadding(10)
+		                .spread(true)		//Remove curvatures and allow for 
+		                .iterations(10)
+		                .draw(jobs);
+		      });
+		</script>
+
+	     <!-- jQuery -->
+	    <script src = "js/jquery.js"></script>
+
+	    <!-- Bootstrap Core JavaScript -->
+	    <script src = "js/bootstrap.min.js"></script>
+
+	    <!-- Plugin JavaScript -->
+	    <script src = "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	    <script src = "js/classie.js"></script>
+	    <script src = "js/cbpAnimatedHeader.js"></script>
+
+	    <!-- Contact Form JavaScript -->
+	    <script src = "js/jqBootstrapValidation.js"></script>
+	    <script src = "js/contact_me.js"></script>
+
+	    <!-- Custom Theme JavaScript -->
+	    <script src = "js/freelancer.js"></script>
+	</body>
+</html>
