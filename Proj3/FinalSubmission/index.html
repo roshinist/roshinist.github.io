@@ -1,0 +1,571 @@
+<!-- 
+    The following d3 examples were referred to build the project:
+    Globe               https://bl.ocks.org/mbostock/4183330
+    Bar Chart           http://bl.ocks.org/mbostock/3887051
+    Radio Buttons       http://bl.ocks.org/nikhilNathwani/5dca6c63a53934185d05
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Correlation between Milk Production and Methane emissions in top 50 countries</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom CSS -->
+    <style>
+    body {
+        padding-top: 0px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+
+    p{
+        font-size: 5;
+    }
+
+    #canvas {
+        display: block;
+        padding: 0;
+        margin: 0 auto;
+
+        background-color:white;
+    }
+
+    @media(max-width:1200px) {
+        body{
+            background-color: white;
+        }
+        .container {
+            margin: 0 50px;
+        }
+        #canvas {
+            width: 100%;
+            height: auto;
+            background-color:white;
+            cursor: pointer;
+            cursor: hand;
+        }
+    }
+    #headerText {
+        text-align: center;
+        font-size: 1.5vw;
+        position:absolute;
+        right:0;
+        top:65%;
+        bottom: 25%;
+        width:100%;
+/*        height:60%;*/
+    }
+    #newsvg {
+        position:absolute;
+        right:0;
+        top:0;
+        bottom: 0;
+        width:100%;
+    }
+
+    /*bar graph css*/
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .bar {
+      fill: blue;
+    }
+
+    .x.axis path {
+      display: none;
+    }
+
+    .svg-container {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        padding-bottom: 35%; /* aspect ratio */
+        vertical-align: top;
+        overflow: hidden;
+    }
+    .svg-content-responsive {
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        left: 0;
+    }
+
+    .nav-tabs > li, .nav-pills > li {
+        float:none;
+        display:inline-block;
+        *display:inline; /* ie7 fix */
+         zoom:1; /* hasLayout ie7 trigger */
+    }
+
+    .nav-tabs, .nav-pills {
+        text-align:center;
+    }
+    </
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="milkProductionBarGraph.js"></script>
+    <script src="methaneBarGraph.js"></script>
+</head>
+
+<body>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 .col-xs-12 .col-md-8 .col-sm-8 text-center">
+                <div id="mainheading">
+                    <h4> Milk Production and Agricultural Methane Emissions by Top 50 Countries</h4>
+                    <p>Methane is one of the prevalent greenhouse gases that causes global warming. Agricultural activities, such as milk production, is one of the primary sources of methane emissions. Therefore, in this project, we set out to look at the top 50 countries with milk production and its correlation with methane emissions.</p>
+                </div>
+                
+                <div id="earth">
+                    <p id="headerText" ></p>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <script>
+
+        var i = -1,
+        j = -1,
+        k = -1,
+        l = -1,
+        ctyname;
+
+        var width = 960,
+            height = 960;
+
+        var countries,  countriesMilkPro, countriesMilkCon ,countriesMethane;
+
+        drawGlobe(i);
+
+        d3.select(self.frameElement).style("height", height + "px");
+
+        // beginning of pause and resume
+        var pause = document.getElementById('canvas');
+        var spin = true;
+        var svg1;
+
+        //drawGlobe create a globe. Segments of the code is developed from mikebostock's "World Tour" found at https://bl.ocks.org/mbostock/4183330
+        function drawGlobe (ind) {
+            i = ind;
+            document.getElementById('mainheading').style.visibility = "visible";
+
+            d3.select('#earth').append('canvas')
+                .attr('width', 960)
+                .attr('height',960)
+                .attr('id', 'canvas');
+
+           
+            var projection = d3.geo.orthographic()
+                .translate([width / 2, height / 2.5])
+                .scale(width / 2 - 100)
+                .clipAngle(90)
+                .precision(0.6);
+
+            var canvas = d3.select("canvas");
+            var c = canvas.node().getContext("2d");
+
+            var path = d3.geo.path()
+                .projection(projection)
+                .context(c);
+
+            var title = d3.select("#headerText");
+
+            queue()
+                .defer(d3.json, "world-110m.json")
+                .defer(d3.json, "data.json")
+                .await(ready);
+
+             function ready(error, world, names) {
+              if (error) throw error;
+
+              var globe = {type: "Sphere"},
+                  land = topojson.feature(world, world.objects.land);
+
+              countries = topojson.feature(world, world.objects.countries).features;
+              countriesMilkPro = topojson.feature(world, world.objects.countries).features;
+              countriesMilkCon = topojson.feature(world, world.objects.countries).features;
+              countriesMethane = topojson.feature(world, world.objects.countries).features;
+
+               var borders = topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }),
+                  n = 50; //Number of countries
+
+              //Store data 
+              countries = countries.filter(function(d) {
+                return names.some(function(n) {
+                  if (d.id == n.CountryID) return d.name = n.CountryName;
+                });
+              });
+              
+               countriesMilkPro2011 = countriesMilkPro.filter(function(d) {
+                return names.some(function(n) {
+                  if (d.id == n.CountryID) return d.MPro2011 = n.MPro2011;
+                });
+              });
+
+                 countriesMilkPro2010 = countriesMilkPro.filter(function(d) {
+                return names.some(function(n) {
+                  if (d.id == n.CountryID) return d.MPro2010 = n.MPro2010;
+                });
+              });
+
+                 countriesMilkPro2009 = countriesMilkPro.filter(function(d) {
+                return names.some(function(n) {
+                  if (d.id == n.CountryID) return d.MPro2009 = n.MPro2009;
+                });
+              });
+              
+                 countriesMilkCon = countriesMilkCon.filter(function(d) {
+                return names.some(function(n) {
+                  if (d.id == n.CountryID) return d.MCon = n.MCon;
+                });
+              });
+              
+                 countriesMethane2011 = countriesMethane.filter(function(d) {
+                return names.some(function(n) {
+                  if (d.id == n.CountryID) return d.Me2011 = n.Me2011;
+                });
+              });
+
+                 countriesMethane2010 = countriesMethane.filter(function(d) {
+                return names.some(function(n) {
+                  if (d.id == n.CountryID) return d.Me2010 = n.Me2010;
+                });
+              });
+
+                 countriesMethane2009 = countriesMethane.filter(function(d) {
+                return names.some(function(n) {
+                  if (d.id == n.CountryID) return d.Me2009 = n.Me2009;
+                });
+              });
+
+              (function transition() {
+                d3.transition()
+                    .duration(1250)
+                    .each("start", function() {
+                        title.html("Country name: "+countries[i = (i + 1) % n].name + "<br/>" + "Milk production: "+countriesMilkPro2011[i].MPro2011 + " Tons <br/>" + "Methane production: "+countriesMethane2011[i].Me2011+ " Gigagrams");
+                        ctyname = countries[i].name
+                        console.log("i = ", i, ctyname);
+                    })
+                    
+                    .tween("rotate", function() {
+                      var p = d3.geo.centroid(countries[i]),
+                          r = d3.interpolate(projection.rotate(), [-p[0], -p[1]]);
+                
+                      return function(t) {
+                        projection.rotate(r(t));
+                        c.clearRect(0, 0, width, height);
+                        c.fillStyle = "#ccc", c.beginPath(), path(land), c.fill();
+                        c.fillStyle = "#ff3232", c.beginPath(), path(countries[i]), c.fill();
+                        c.strokeStyle = "#fff", c.lineWidth = .5, c.beginPath(), path(borders), c.stroke();
+                        c.strokeStyle = "#000", c.lineWidth = 2, c.beginPath(), path(globe), c.stroke();
+                      };
+                    })
+
+                  .transition()
+                    .each("end", transition);
+              })();
+
+              
+            }
+            //Handle clicks on globe to allow pause and resume
+            document.getElementById('canvas').addEventListener('click', pauseAndResume(), false);
+        }
+
+        //Function handles how to pause and resume the globe
+        function pauseAndResume () {
+           pause = document.getElementById('canvas');
+
+
+            pause.addEventListener('click', function(event) {
+                document.getElementById('mainheading').style.visibility = "hidden";
+                if (spin) {
+                    d3.selectAll("*") 
+                        .transition() 
+                        .duration( 0 );
+
+                    spin = false;
+                    // create a svg, this is where the bar graph goes
+                    var earthDivWidth = document.getElementById('earth').offsetWidth;
+                    var earthDivHeight = document.getElementById('earth').offsetHeight;
+
+                    //Define attributes of overlay svg
+                    svg1 = d3.select("#earth").append("svg").attr("width", 1400).attr("height", 1050).attr("id", "newsvg").attr("preserveAspectRatio", "xMinYMin meet").attr("viewBox", "0 0 1400 1050")
+					   //class to make it responsive
+					   .classed("svg-content-responsive", true) ;
+
+                    // draw a rectangle on svg to cover the background globe
+                    svg1.append("svg:image")
+                        .attr("xlink:href", "globe4.png")
+                        .attr("x", 0)
+                        .attr("y", -500)
+                        .attr("width", 1400)
+                        .attr("height", 2800)
+                        .style("opacity", "0.5")
+
+                    svg1.append("rect")
+                        .attr("id", "overlayRect")
+                        .attr("x", 0)
+                        .attr("y", 0)
+                        .attr("width", "100%")
+                        .attr("height", "150%")
+                        .style("fill","black")
+                        .style("opacity","0.05");
+
+                    svg1.append("rect")
+                        .attr("id", "resumeButton")
+                        .style("cursor","pointer")
+                        .attr("x", 600)
+                        .attr("y", 220)
+                        .attr("rx", 5)
+                        .attr("ry", 5)
+                        .attr("width", 200)
+                        .attr("height", 80)
+                        .style("fill","green");
+
+                    var resumeText = svg1.append("text")
+                        .text("Resume")
+                        .attr("id","resumeButton")
+                        .attr("x",700)
+                        .attr("y",260)
+                        .style("font-size","32px")
+                        .style("text-anchor", "middle")
+                        .style("alignment-baseline","middle")
+                        .style("cursor","pointer")
+                        .style("fill", "white")
+                        .on("click", function(event) {
+                            drawGlobe(i);
+                            console.log("drawglobe in resume i = ", i);
+
+                            if (spin == false) {
+                                queue()
+                                    .defer(d3.json, "world-110m.json")
+                                    .defer(d3.json, "data.json");
+                                
+                                spin = true;
+
+                                //remove all elements here, after resume spinning
+                                d3.select("#newsvg").remove();
+                                d3.select("#overlayRect").remove();
+                                d3.select("#resumeButton").remove();
+                                document.getElementById('headerText').style.visibility = "visible";
+                                d3.select("#milkDiv").remove();
+                                d3.select("#methaneDiv").remove();
+
+                                d3.selectAll('.svg-container').remove();
+                                
+                            }
+                        }, false);
+
+                    // beginning of radio button
+                    var w= 1400;
+		            var h= 125;
+
+		            //text that the radio button will toggle
+		            var number= svg1.append("text")
+		                            .attr("id","numberToggle")
+		                            .attr("x",700)
+		                            .attr("y",50)
+		                            .attr("fill","black")
+		                            .attr("font-size",50)
+                                    .style("text-anchor", "middle")
+                                    .style("alignment-baseline","middle")
+		                            .text(ctyname + ' '+ '2011')
+
+                    var description= svg1.append("text")
+                                    .attr("id","numberToggle")
+                                    .attr("x",700)
+                                    .attr("y",90)
+                                    .attr("fill","black")
+                                    .attr("font-size",27)
+                                    .style("text-anchor", "middle")
+                                    .style("alignment-baseline","middle")
+                                    .text(' The relative position of a country with respect to the top 5 countries in milk production and methane emissions' )
+
+		            //container for all buttons
+		            var allButtons= svg1.append("g")
+		                                .attr("id","allButtons") 
+
+		            //fontawesome button labels
+		            var labels= ['2009','2010','2011'];
+
+		            //colors for different button states 
+		            var defaultColor= "#7777BB"
+		            var hoverColor= "#0000ff"
+		            var pressedColor= "#000077"
+
+                    updateButtonColors(d3.select(this), d3.select(this.parentNode))
+		            //groups for each button (which will hold a rect and text)
+
+                    //Radio Buttons based on d3 example found at http://bl.ocks.org/nikhilNathwani/5dca6c63a53934185d05
+		            var buttonGroups= allButtons.selectAll("g.button")
+		                                    .data(labels)
+		                                    .enter()
+		                                    .append("g")
+		                                    .attr("class","button")
+		                                    .style("cursor","pointer")
+		                                    .on("click",function(d,buttonNum) {
+		                                    	// call drawgraph1 and drawgraph2 should go inside here
+                                                var year = buttonNum+2009;
+                                                console.log(this);
+		                                        updateButtonColors(d3.select(this), d3.select(this.parentNode))
+		                                        d3.select("#numberToggle").text(ctyname + ' '+ year)
+                                                
+                                                d3.select('#milkDiv').remove();
+                                                d3.select('#methaneDiv').remove();
+                                                if(year == 2011){
+                                                    //draw_graph1() and draw_graph2() is based on mikebostock'g 'Grouped Bar Chart' found at http://bl.ocks.org/mbostock/3887051
+                                                    draw_graph1(2011,{"CountryName":countries[i].name , "MPro2011": countriesMilkPro2011[i].MPro2011});
+                                                    draw_graph2(2011,{"CountryName": countries[i].name,"Me2011": countriesMethane2011[i].Me2011})
+
+                                                }
+                                                else if(year == 2010){
+                                                    console.log('countriesMilkPro2010', countriesMilkPro2010);
+                                                    draw_graph1(2010,{"CountryName":countries[i].name , "MPro2010": countriesMilkPro2010[i].MPro2010});
+                                                    draw_graph2(2010,{"CountryName": countries[i].name,"Me2010": countriesMethane2010[i].Me2010})
+                                                }
+                                                else if(year == 2009){
+                                                     console.log('countriesMilkPro2009', countriesMilkPro2009);
+                                                     draw_graph1(2009,{"CountryName":countries[i].name , "MPro2009": countriesMilkPro2009[i].MPro2009});
+                                                    draw_graph2(2009,{"CountryName": countries[i].name,"Me2009": countriesMethane2009[i].Me2009})
+                                                }
+
+                                                
+		                                    })
+		                                    .on("mouseover", function() {
+		                                        if (d3.select(this).select("rect").attr("fill") != pressedColor) {
+		                                            d3.select(this)
+		                                                .select("rect")
+		                                                .attr("fill",hoverColor);
+		                                        }
+		                                    })
+		                                    .on("mouseout", function() {
+		                                        if (d3.select(this).select("rect").attr("fill") != pressedColor) {
+		                                            d3.select(this)
+		                                                .select("rect")
+		                                                .attr("fill",defaultColor);
+		                                        }
+		                                    })
+
+		            var bWidth= 200; //button width
+		            var bHeight= 80; //button height
+		            var bSpace= 30; //space between buttons
+		            var x0= 370; //x offset
+		            var y0= 115; //y offset
+
+		            //adding a rect to each toggle button group
+		            //rx and ry give the rect rounded corner
+		            buttonGroups.append("rect")
+		                        .attr("class","buttonRect")
+		                        .attr("width",bWidth)
+		                        .attr("height",bHeight)
+		                        .attr("x",function(d,i) {return x0+(bWidth+bSpace)*i;})
+		                        .attr("y",y0)
+		                        .attr("rx",5) //rx and ry give the buttons rounded corners
+		                        .attr("ry",5)
+		                        .attr("fill",defaultColor)
+
+		            //adding text to each toggle button group, centered 
+		            //within the toggle button rect
+		            buttonGroups.append("text")
+		                        .attr("class","buttonText")
+		                        .attr("font-family","FontAwesome")
+		                        .attr("x",function(d,i) {
+		                            return x0 + (bWidth+bSpace)*i + bWidth/2;
+		                        })
+		                        .attr("y",y0+bHeight/2)
+		                        .attr("text-anchor","middle")
+		                        .attr("dominant-baseline","central")
+		                        .attr("fill","white")
+                                .attr("font-size", 32)
+		                        .text(function(d) {return d;})
+
+		            function updateButtonColors(button, parent) {
+		                parent.selectAll("rect")
+		                        .attr("fill",defaultColor)
+
+		                button.select("rect")
+		                        .attr("fill",pressedColor)
+		            }
+                    // end of radio button
+
+                    d3.select("#canvas").remove();
+                    document.getElementById('headerText').style.visibility = "hidden";
+
+                    draw_graph1(2011,{"CountryName":countries[i].name , "MPro2011": countriesMilkPro2011[i].MPro2011});
+                    draw_graph2(2011,{"CountryName": countries[i].name,"Me2011": countriesMethane2011[i].Me2011})
+
+                };
+
+                
+                var resume = document.getElementById('resumeButton');
+                resume.addEventListener('click', function(event) {
+                    drawGlobe(i);
+                    console.log("drawglobe in resume i = ", i);
+
+                    if (spin == false) {
+                        queue()
+                            .defer(d3.json, "world-110m.json")
+                            .defer(d3.json, "data.json");
+                        
+                        
+                        spin = true;
+
+                        //remove all elements here, after resume spinning
+                        d3.select("#newsvg").remove();
+                        d3.select("#overlayRect").remove();
+                        d3.select("#resumeButton").remove();
+                        document.getElementById('headerText').style.visibility = "visible";
+                        d3.select("#milkDiv").remove();
+                        d3.select("#methaneDiv").remove();
+
+                        d3.selectAll('.svg-container').remove();
+                        
+                    }
+                }, false);
+
+            }, false);       
+            // end of pause and resume
+        }
+    </script>
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
